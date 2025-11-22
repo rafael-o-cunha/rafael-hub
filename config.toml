@@ -1,3 +1,29 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "http://localhost:1313/"
+languageCode = "pt-br"
+title = "Meu Hub"
+theme = "PaperMod"
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  defaultTheme = "auto"
+  showReadingTime = true
+
+  # Homepage simples
+  [params.homeInfoParams]
+    Title = "Bem-vindo ao Meu Hub"
+    Content = "Este é um site Hugo usando o tema PaperMod."
+
+# Menu simples
+[menu]
+
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Sobre"
+    url = "/about/"
+    weight = 2

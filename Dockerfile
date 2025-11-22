@@ -1,4 +1,4 @@
-FROM klakegg/hugo:ext-alpine
+FROM peaceiris/hugo:latest
 
 WORKDIR /src
 EXPOSE 1313
