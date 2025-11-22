@@ -1,48 +1,51 @@
 # Image Hugo Extended
-HUGO_IMAGE = klakegg/hugo:ext-alpine
+IMAGE = hugo-hub
 PROJECT_DIR = $(shell pwd)
 
 # ============ COMMANDS ============ #
 
+## Build da imagem local com base no Dockerfile
+image:
+	docker build -t $(IMAGE) .
+
 ## Iniciar servidor local
-server:
+server: image
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
 		-p 1313:1313 \
-		$(HUGO_IMAGE) \
-		server --bind 0.0.0.0 -D
+		$(IMAGE)
 
 ## Create a new Hugo site in the current directory
-new-site:
+new-site: image
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
-		$(HUGO_IMAGE) \
-		new site --force .
+		$(IMAGE) \
+		hugo new site --force .
 
 ## Add PaperMod theme as submodule
 theme:
 	git submodule add https://github.com/adityatelange/hugo-PaperMod themes/PaperMod || true
 
 ## Create a new blog post: make new-post name=meu-post
-new-post:
+new-post: image
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
-		$(HUGO_IMAGE) \
-		new posts/$(name).md
+		$(IMAGE) \
+		hugo new posts/$(name).md
 
 ## Create a new page: make new-page name=sobre
-new-page:
+new-page: image
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
-		$(HUGO_IMAGE) \
-		new $(name)/_index.md
+		$(IMAGE) \
+		hugo new $(name)/_index.md
 
 ## Build static site (output in /public)
-build:
+build: image
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
-		$(HUGO_IMAGE) \
-		--minify
+		$(IMAGE) \
+		hugo --minify
 
 ## Remove generated /public
 clean:
