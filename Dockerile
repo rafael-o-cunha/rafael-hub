@@ -1,6 +1,0 @@
-FROM klakegg/hugo:0.134.2-ext-alpine
-
-WORKDIR /src
-EXPOSE 1313
-
-CMD ["server", "--bind", "0.0.0.0", "--baseURL", "http://localhost", "-D"]

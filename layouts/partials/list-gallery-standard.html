@@ -1,0 +1,205 @@
+<style>
+/* ---- GALERIA ---- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.gallery-content {
+  padding: 1rem;
+}
+
+/* ---- LISTA ---- */
+.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.list-card {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 12px;
+  transition: .15s;
+}
+
+.list-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.hidden { display: none; }
+
+/* Botões */
+.toggle-buttons {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+.toggle-buttons button {
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--entry);
+  cursor: pointer;
+  transition: .15s;
+}
+
+.toggle-buttons button:hover {
+  background: var(--entry-hover);
+}
+
+/* LISTA COM IMAGEM */
+.list-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 12px;
+  transition: .15s;
+}
+
+.list-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Imagem do modo lista */
+.thumb-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* placeholder quando não há imagem */
+.thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  font-size: .75rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+</style>
+
+<h1 class="single-title">{{ .Title }}</h1>
+
+<!-- Botões -->
+<div class="toggle-buttons">
+  <button id="view-gallery">Gallery</button>
+  <button id="view-list">List</button>
+</div>
+
+<!-- GALERIA -->
+<div id="gallery-mode">
+  <div class="gallery-grid">
+    {{ range .Pages }}
+      {{ $pg := . }}
+
+      <a href="{{ $pg.RelPermalink }}" class="gallery-card">
+
+        {{ with $pg.Params.cover }}
+          {{ $img := $pg.Resources.GetMatch .image }}
+          {{ if $img }}
+            <img src="{{ $img.RelPermalink }}" alt="{{ .alt }}">
+          {{ else }}
+            <div class="w-full h-48 bg-gray-300 flex items-center justify-center text-sm text-gray-600">
+              imagem não encontrada
+            </div>
+          {{ end }}
+        {{ end }}
+
+        <div class="gallery-content">
+          <h2 class="text-xl font-bold">{{ $pg.Title }}</h2>
+          {{ if $pg.Params.description }}
+            <p class="text-gray-500 mt-2 text-sm">{{ $pg.Params.description }}</p>
+          {{ end }}
+        </div>
+      </a>
+
+    {{ end }}
+  </div>
+</div>
+
+<!-- LISTA -->
+<div id="list-mode" class="hidden">
+  <div class="list-view">
+    {{ range .Pages }}
+      {{ $pg := . }}
+
+      <a href="{{ $pg.RelPermalink }}" class="list-card flex gap-4 items-start">
+
+        <!-- IMAGEM À ESQUERDA -->
+        <div class="thumb-wrapper">
+          {{ with $pg.Params.cover }}
+            {{ $img := $pg.Resources.GetMatch .image }}
+            {{ if $img }}
+              <img src="{{ $img.RelPermalink }}" alt="{{ .alt }}" class="thumb-img">
+            {{ else }}
+              <div class="thumb-placeholder">sem imagem</div>
+            {{ end }}
+          {{ end }}
+        </div>
+
+        <!-- CONTEÚDO À DIREITA -->
+        <div class="flex-1 min-w-0">
+          <h2 class="text-xl font-bold">{{ $pg.Title }}</h2>
+          {{ if $pg.Params.description }}
+            <p class="text-gray-600 mt-2">{{ $pg.Params.description }}</p>
+          {{ end }}
+        </div>
+
+      </a>
+    {{ end }}
+  </div>
+</div>
+
+
+<!-- JavaScript -->
+<script>
+document.getElementById("view-gallery").onclick = () => {
+  document.getElementById("gallery-mode").classList.remove("hidden");
+  document.getElementById("list-mode").classList.add("hidden");
+};
+
+document.getElementById("view-list").onclick = () => {
+  document.getElementById("list-mode").classList.remove("hidden");
+  document.getElementById("gallery-mode").classList.add("hidden");
+};
+</script>

@@ -1,9 +1,13 @@
 ---
-title: "Início"
+title: "Home"
 ---
 
-# Bem-vindo ao Hub
+# 👋 Bem-vindo ao meu Hub
 
-Este é um site Hugo renderizado com PaperMod.
+Sou **Rafael Cunha**.  
+Aqui você encontra meus conteúdos sobre:
 
-Use o menu acima para navegar.
+- **Tech** — aprendizado público, engenharia, LLMs, automação e análises técnicas.
+- **Insights** — recomendações, inspirações, links úteis e notas rápidas.
+
+Explore e acompanhe minhas construções.

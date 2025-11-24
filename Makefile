@@ -1,61 +1,33 @@
-# Image Hugo Extended
 IMAGE = hugo-hub
 PROJECT_DIR = $(shell pwd)
 
-# ============ COMMANDS ============ #
-
-## Build da imagem local com base no Dockerfile
 image:
 	docker build -t $(IMAGE) .
 
-## Iniciar servidor local
-server: image
+server: image 
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
 		-p 1313:1313 \
-		$(IMAGE)
-
-## Create a new Hugo site in the current directory
-new-site: image
-	docker run --rm -it \
-		-v $(PROJECT_DIR):/src \
 		$(IMAGE) \
-		hugo new site --force .
+		server --bind 0.0.0.0 --disableFastRender -D
 
-## Add PaperMod theme as submodule
+re: clean server
+
 theme:
 	git submodule add https://github.com/adityatelange/hugo-PaperMod themes/PaperMod || true
 
-## Create a new blog post: make new-post name=meu-post
-new-post: image
-	docker run --rm -it \
-		-v $(PROJECT_DIR):/src \
-		$(IMAGE) \
-		hugo new posts/$(name).md
-
-## Create a new page: make new-page name=sobre
-new-page: image
-	docker run --rm -it \
-		-v $(PROJECT_DIR):/src \
-		$(IMAGE) \
-		hugo new $(name)/_index.md
-
-## Build static site (output in /public)
 build: image
 	docker run --rm -it \
 		-v $(PROJECT_DIR):/src \
 		$(IMAGE) \
-		hugo --minify
+		/bin/sh -c "hugo --minify"
 
-## Remove generated /public
 clean:
-	rm -rf public
+	./scripts/dev.sh
 
-## Help
 help:
 	@echo "Comandos disponíveis:"
 	@echo "  make server             - roda o servidor local do Hugo"
-	@echo "  make new-post name=xxx  - cria um novo post"
-	@echo "  make new-page name=xxx  - cria uma nova página"
 	@echo "  make build              - gera o site estático"
-	@echo "  make clean              - remove a pasta public"
+	@echo "  make clean              - remove a pasta public e o conteúdo da resources"
+	@echo "  make re                 - remove a pasta public e o conteúdo da resources e depois sobe o server novamente"

@@ -1,0 +1,58 @@
+# ============================
+# HUGO / STATIC SITE BUILD
+# ============================
+
+public/
+public/**
+
+resources/
+resources/**
+
+.hugo_build.lock
+hugo_stats.json
+
+# ============================
+# GIT SUBMODULES / THEMES
+# ============================
+
+# themes/*
+
+# ============================
+# SISTEMA / TEMP / EDITORES
+# ============================
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+# ============================
+# DOCKER
+# ============================
+
+docker-compose.override.yml
+*.log
+
+# ============================
+# SCRIPTS LOCAIS
+# ============================
+
+scripts/*
+!scripts/dev.sh
+
+# ============================
+# AMBIENTE / CREDENCIAIS
+# ============================
+
+.env
+.env.*
+*.env
+
+# ============================
+# BACKUP / ARQUIVOS TEMP
+# ============================
+
+*.bak
+*.tmp
+*~
