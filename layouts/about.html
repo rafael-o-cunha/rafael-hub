@@ -1,0 +1,255 @@
+{{ define "main" }}
+
+<style>
+.home-wrap {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem 1.5rem;
+}
+
+/* GRID DE SESSÕES */
+.sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.section-card {
+  padding: 1.4rem;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: .15s;
+}
+
+.section-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.section-card h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.section-card p {
+  margin: 0.6rem 0 1rem 0;
+  color: var(--secondary);
+}
+
+.section-card a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* LINHA DIVISÓRIA */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 3rem 0;
+}
+
+/* LISTAS AUTOMÁTICAS */
+.home-list-section h3 {
+  margin-bottom: 0.7rem;
+}
+
+.home-list-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.home-list-section li {
+  margin: 0.25rem 0;
+}
+
+.home-list-section a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.home-list-section a:hover {
+  text-decoration: underline;
+}
+
+/* SOCIAL */
+.social-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.social-section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.social-icons a {
+  width: 38px;
+  height: 38px;
+  color: #333;
+  transition: 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: #000;
+  transform: scale(1.15);
+}
+
+.social-icons svg {
+  width: 100%;
+  height: 100%;
+}
+
+.social-icons a {
+  width: 38px;
+  height: 38px;
+  transition: 0.25s ease;
+  filter: drop-shadow(0 0 4px rgba(204, 201, 201, 0.15)); /* brilho leve */
+}
+
+.social-icons a:hover {
+  color: #ffffff;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35)); /* brilho mais forte no hover */
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  transition: 0.2s ease;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.15));
+}
+
+/* Vou trocar futuramente */
+.github   { background-image: url('/icons/github.png'); }
+.linkedin { background-image: url('/icons/linkedin.png'); }
+.substack { background-image: url('/icons/substack.png'); }
+.youtube  { background-image: url('/icons/youtube.png'); }
+
+/* Light theme */
+/*
+html[data-theme="light"] .github   { background-image: url('/icons/github.png'); }
+html[data-theme="light"] .linkedin { background-image: url('/icons/linkedin.png'); }
+html[data-theme="light"] .substack { background-image: url('/icons/substack.png'); }
+html[data-theme="light"] .youtube  { background-image: url('/icons/youtube.png'); }
+*/
+/* Dark theme */
+/*
+html[data-theme="light"] .github   { background-image: url('/icons/github.png'); }
+html[data-theme="light"] .linkedin { background-image: url('/icons/linkedin.png'); }
+html[data-theme="light"] .substack { background-image: url('/icons/substack.png'); }
+html[data-theme="light"] .youtube  { background-image: url('/icons/youtube.png'); }
+*/
+
+section {
+  margin-bottom: 30px;
+  padding-top: 30px;
+}
+
+p {
+  padding-top: 5px;
+}
+
+
+</style>
+
+<div class="home-wrap">
+  
+  <section style="margin-bottom: 30px;">
+    <h3 style="text-align: center;">
+        👋 Bem-vindo ao meu Hub de Tecnologia e Criação
+    </h3>
+    <br>
+    <p style="text-align: justify;">
+      &nbsp&nbsp&nbsp&nbsp Este é o meu espaço central de <b>R&D, Projetos e Ideias</b> — um ambiente onde conecto tecnologia, engenharia, inovação e aprendizado contínuo.  
+      Aqui você encontra tudo o que estou Pesquisando, construindo, testando e compartilhando de forma aberta e estruturada.
+    </p>
+    <p style="text-align: justify;">
+      &nbsp&nbsp&nbsp&nbsp Aqui eu experimento ideias, protótipos, conceitos, produtos e reflexões. É onde construo, testo, erro rápido, ajusto e sigo. Se algo daqui virar projeto, ótimo.
+    </p>
+  </section>
+
+  <section>
+    <h3> 🧪 R&D Notes </h3>
+    <br>
+    <p style="text-align: justify;">
+      Reflexões, práticas, experimentos e anotações de pesquisa aplicada — desde P&D, engenharia de software, dados, automação, até modelos e frameworks que estou desenvolvendo para negócios e tecnologia.
+    </p>
+  </section>
+
+   <section>
+    <h3> 🛠 Projects </h3>
+    <br>
+    <p style="text-align: justify;">
+      Meu portfólio vivo de experimentos. Aplicações, ferramentas, automações, modelos e experimentos técnicos que construo no dia a dia.<br>
+      Cada projeto possui sua própria página onde aplico com diversos formados de estruturas textuais, por exemplo:
+    </p>
+     <ul style="padding-left: 30px;">
+        <li>objetivo</li>
+        <li>visão geral </li>
+        <li>arquitetura</li>
+        <li>tecnologias utilizadas</li>
+        <li>anotações de desenvolvimento </li>
+        <li>próximos passos </li>
+      </ul>
+      <p>
+        Os Projetos servem como base para validação de ideias e documentação clara do processo de desenvolvimento e pesquisa.
+      </p>
+  </section>
+
+   <section>
+    <h3> 💡 Insights  </h3>
+    <br>
+    <p style="text-align: justify;">
+      Conteúdos rápidos e diretos:<br>  
+      Descobertas, recomendações, links úteis, análises curtas, curiosidades técnicas e notas que aparecem durante meu processo de pesquisa e criação.
+    </p>
+  </section>
+
+   <section>
+    <h3> 🎯 Propósito  </h3>
+    <br>
+    <p style="text-align: justify;">
+      Este hub foi criado para ser:
+    </p>
+    <ul style="padding-left: 30px;">
+      <li><b>repositório estruturado do meu conhecimento</b></li>
+      <li><b>canal público de aprendizado contínuo</b></li>
+      <li><b>portfólio organizado e bem documentado</b></li>
+      <li><b>lugar para compartilhar ideias, conectar pessoas e preparar novos projetos</b></li>
+    </ul>
+    <br>
+    <p>
+      Seja você alguém curioso, um recrutador, ou alguém pesquisando tecnologia, inovação ou P&D — aqui você encontra um pouco do que pesquiso e construo.<br>
+      
+    </p>
+    
+  </section>
+
+  <section>
+    <p>
+      Sinta-se à vontade para explorar.<br>  
+      Obrigado pela visita.
+    </p>
+  </section>
+
+  <section class="social-section">
+    <h4>Conecte-se comigo</h4>
+    {{ partial "social-icons.html" }}
+  </section>
+
+</div>
+
+{{ end }}

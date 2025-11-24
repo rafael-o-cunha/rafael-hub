@@ -7,6 +7,8 @@ theme = "PaperMod"
   pagerSize = 10
 
 [params]
+  ShowPostsOnHomePage = false
+  showRecent = false
   defaultTheme = "auto"
   showReadingTime = true
   env = "production"
@@ -18,9 +20,8 @@ theme = "PaperMod"
   showImageInList = true
 
   # Homepage simples
-  [params.homeInfoParams]
-    #homeInfoParams = { Title = "Rafael Cunha", Content = "Meu hub de tecnologia" }
-    ShowRecent = true
+  # [params.homeInfoParams]
+  #   homeInfoParams = { Title = "Rafael Cunha", Content = "Meu hub de tecnologia" }
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

@@ -1,0 +1,32 @@
+<div class="carousel-container">
+  <div class="carousel-title">
+    <a class="view-all" href="{{ .Permalink }}">Ver tudo →</a>
+  </div>
+
+  <div class="carousel">
+    {{ range first 4 .Pages.ByDate.Reverse }}
+      {{ $imgPath := "" }}
+
+      {{ if .Params.cover.image }}
+        {{ $imgPath = printf "%s%s" .RelPermalink .Params.cover.image }}
+      {{ end }}
+
+      <a href="{{ .Permalink }}" class="card">
+
+        {{ if $imgPath }}
+          <img src="{{ $imgPath }}" alt="{{ .Params.cover.alt }}" class="card-img">
+        {{ else }}
+          <div class="card-placeholder"></div>
+        {{ end }}
+
+        <h4 class="card-title">{{ .Title }}</h4>
+        <p class="card-date">{{ .Date.Format "02 Jan 2006" }}</p>
+      </a>
+    {{ end }}
+
+    <a href="{{ .Permalink }}" class="card view-more">
+      <div class="arrow">→</div>
+      <p>Ver mais</p>
+    </a>
+  </div>
+</div>
