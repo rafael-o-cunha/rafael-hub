@@ -11,7 +11,7 @@ server: image
 		$(IMAGE) \
 		server --bind 0.0.0.0 --disableFastRender -D
 
-re: clean server
+re: clean server 
 
 theme:
 	git submodule add https://github.com/adityatelange/hugo-PaperMod themes/PaperMod || true
