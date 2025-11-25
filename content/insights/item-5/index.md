@@ -6,15 +6,3 @@ cover:
   alt: "Ferramenta X"
   hidden: false
 ---
-
-# OLA MUNDO
-
- abcd effadsibq
-
- ```java
- system.out.println("isso é um código");
-
-
- ```
-
- aisduavp
