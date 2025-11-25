@@ -2,3 +2,4 @@
 
 sudo rm -rf public
 sudo rm -rf resources/_gen/*
+sudo chown -R $USER:$USER .
