@@ -1,0 +1,37 @@
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repo
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Hugo site
+        run: hugo --minify
+
+      - name: Deploy to GitHub Pages repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # Pasta gerada pelo Hugo
+          publish_dir: ./public
+          # Repo DESTINO (seu github.io)
+          external_repository: rafael-o-cunha/rafael-o-cunha.github.io
+          # Nome da branch do destino
+          publish_branch: main
+          # Token com permissão de push
+          personal_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # Preserva CNAME se existir
+          keep_files: false
